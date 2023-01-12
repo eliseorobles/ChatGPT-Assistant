@@ -1,3 +1,10 @@
+.stApp{
+    
+    background-image: url(https://i.postimg.cc/hjG9RmmH/cheesecakeenthusiast-minimalist-blue-colors-aesthetically-pleas-5c93a3df-b6bb-4a91-8ade-20f91b3aeabb.png);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 .css-12oz5g7{
     max-width: 100%;
     margin:5% 0;
@@ -17,4 +24,9 @@
 
 
 
+.stButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 

@@ -8,6 +8,8 @@ from io import StringIO
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
+st.title("Open AI chatbot")
+
 st.markdown(title, unsafe_allow_html=True)
 st.markdown(description, unsafe_allow_html=True)
 
@@ -53,18 +55,10 @@ with col1:
             st.markdown("## Email Output:")
             st.subheader(start + output)
 
-            st.markdown("____")
-            st.markdown("## Send Your Email")
-            st.subheader("You can press the Generate Email Button again if you're unhappy with the model's output")
-           
-            st.subheader("Otherwise:")
-            st.text(output)
-            url = "https://mail.google.com/mail/?view=cm&fs=1&to=&su=&body=" + b.replace_spaces_with_pluses(start + output)
-
-            st.markdown("[Click me to send the email]({})".format(url))   
+ 
 
 
-
+#Generate Email, Generate Code Info, Generate Documentation
 
 with col2:
    
@@ -76,7 +70,7 @@ with col2:
         prompt = st.text_area("Pate the code that needed explanations.")
        
 
-        submit_button = st.form_submit_button(label='Explain')
+        submit_button = st.form_submit_button(label='Generate Code Info')
  
         if submit_button:
             with st.spinner("Generating Result..."):
@@ -99,7 +93,7 @@ with col3:
 
 
 
-        submit_button = st.form_submit_button(label='Generate')
+        submit_button = st.form_submit_button(label='Generate Documentation')
 
         if submit_button:
             with st.spinner("Improving Documentation"):
@@ -108,15 +102,13 @@ with col3:
                     output, tech = b.generate_document(prompt)
                 elif uploaded_file:
                     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-                    st.write(stringio.read())
+                    
                     output, tech = b.generate_document(stringio.read())
                     
             st.markdown("## Output")
 
             st.markdown(output)
-            st.markdown("## tech stack")
+            
             st.markdown(f"1{tech}")
-
-
 
 
