@@ -1,4 +1,4 @@
-title = "<h2 style='text-align: center;'><img src='https://i.postimg.cc/GtQ2ytTP/abc.png' height='100px'/>Test Headline</h2>"
+
 
 description = """<p style='text-align: center; font-weight:400'>Updating of credit definition and norm, name of the degree program, designations and 
 responsibilities, grade point values to comply with the UGC circular 901/25112008; Amendments 

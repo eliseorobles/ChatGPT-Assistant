@@ -1,16 +1,34 @@
 import streamlit as st
-import openai
-
+from pathlib import Path
 from ml_model import ml_backend
 from streamlit.components.v1 import html
 from utils import *
 from io import StringIO
+import base64
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-st.title("Open AI chatbot")
 
-st.markdown(title, unsafe_allow_html=True)
+#to handle images
+f_path = Path().absolute()
+header_path = f_path/'header.png'
+background_path = f_path/'background.png'
+
+st.markdown("<h1 style='text-align: center;'>Open Ai Chatbot</h1>", unsafe_allow_html=True)
+
+
+
+def add_header_from_local(image_file):
+    with open(image_file, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read())
+    st.markdown(
+    f"""
+    <h3 style="text-align: center;"><img src='data:image/{"png"};base64,{encoded_string.decode()}'/>Text Heading
+    </h3>
+    """,
+    unsafe_allow_html=True
+    )
+add_header_from_local(header_path)    
 st.markdown(description, unsafe_allow_html=True)
 
 b = ml_backend()
@@ -29,7 +47,7 @@ with col1:
 
 
     with st.form(key="form1"):
-        st.markdown(f'<h3 style="background-color:#addff0;">Generate Email</h3>', unsafe_allow_html=True)
+        st.markdown(f'<h3 style="background-color:#addff0;text-align: center;">Generate Email</h3>', unsafe_allow_html=True)
 
 
         st.markdown(""" 
@@ -53,7 +71,7 @@ with col1:
             with st.spinner("Generating Email..."):
                 output = b.generate_email(prompt, slider)
             st.markdown("## Email Output:")
-            st.subheader(start + output)
+            st.markdown(start + output)
 
  
 
@@ -63,7 +81,7 @@ with col1:
 with col2:
    
    with st.form(key="form2"):
-        st.markdown(f'<h3 style="background-color:#9ceb91;">Generate Code Info</h3>', unsafe_allow_html=True)
+        st.markdown(f'<h3 style="background-color:#9ceb91;text-align: center;">Generate Code Info</h3>', unsafe_allow_html=True)
         st.markdown("""
         * GPTs ability create and understand code allows us to use it to perform tasks like explaining what the code in a file does""")
 
@@ -83,7 +101,7 @@ with col2:
 with col3:
    
     with st.form(key="form3"):
-        st.markdown(f'<h3 style="background-color:#f5b16e;">Generate Documentation</h3>', unsafe_allow_html=True)
+        st.markdown(f'<h3 style="background-color:#f5b16e;text-align: center;">Generate Documentation</h3>', unsafe_allow_html=True)
 
 
 
@@ -112,3 +130,20 @@ with col3:
             st.markdown(f"1{tech}")
 
 
+
+def add_bg_from_local(image_file):
+    with open(image_file, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read())
+    st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background-image: url(data:image/{"png"};base64,{encoded_string.decode()});
+        background-size: cover
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+    )
+add_bg_from_local(background_path)    
+    

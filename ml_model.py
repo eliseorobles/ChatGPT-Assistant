@@ -3,14 +3,14 @@ import openai
 
 class ml_backend:
         
-    openai.api_key = "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"
+    openai.api_key = "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" #:))))
 
-    def generate_email(self, user_input, max_tokens=150):
+    def generate_email(self, user_input, max_tokens=200):
         """Returns a generated an email using GPT3 with a certain prompt and starting sentence"""
-        driving_text = "Write me a professionally sounding email about"
+        
         response = openai.Completion.create(
         engine="text-davinci-003",
-        prompt= f"{driving_text} {user_input}",
+        prompt= f"complete this email professionally: {user_input}",
         temperature=0.71,
         max_tokens=max_tokens,
         top_p=1,
